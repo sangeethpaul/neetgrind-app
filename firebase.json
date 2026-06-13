@@ -1,0 +1,6 @@
+{
+  "apphosting": {
+    "backendId": "neetgrind-backend",
+    "rootDir": "./"
+  }
+}

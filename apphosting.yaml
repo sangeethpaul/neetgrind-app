@@ -1,0 +1,32 @@
+# apphosting.yaml
+runConfig:
+  cpu: 1
+  memoryMiB: 512
+  minInstances: 0
+  maxInstances: 10
+  concurrency: 80
+
+env:
+  - variable: NEXT_PUBLIC_SUPABASE_URL
+    value: https://jsskuqzjrfpbqlriytlj.supabase.co
+    availability:
+      - BUILD
+      - RUNTIME
+  - variable: NEXT_PUBLIC_SUPABASE_ANON_KEY
+    value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Impzc2t1cXpqcmZwYnFscml5dGxqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg0ODI5NTksImV4cCI6MjA5NDA1ODk1OX0.9HlM1kXxvl69fUjNjAFqXQvY5IEWIFE7tiPKmTltoRE
+    availability:
+      - BUILD
+      - RUNTIME
+  - variable: SUPABASE_URL
+    value: https://jsskuqzjrfpbqlriytlj.supabase.co
+    availability:
+      - BUILD
+      - RUNTIME
+  - variable: SUPABASE_KEY
+    secret: SUPABASE_KEY
+    availability:
+      - RUNTIME
+  - variable: GEMINI_API_KEY
+    secret: GEMINI_API_KEY
+    availability:
+      - RUNTIME

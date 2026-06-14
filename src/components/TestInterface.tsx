@@ -95,16 +95,12 @@ export default function TestInterface({ topicSlug, topicName }: Props) {
     }
   }, [currentQ, questions.length, handleSubmit]);
 
-  // Timer
+  // Timer (continues counting down into negative overtime values)
   useEffect(() => {
     if (loading || submitted) return;
-    if (timeLeft <= 0) {
-      handleNext();
-      return;
-    }
     const timer = setInterval(() => setTimeLeft((t) => t - 1), 1000);
     return () => clearInterval(timer);
-  }, [loading, submitted, timeLeft, handleNext]);
+  }, [loading, submitted]);
 
   // Reset timer when manually switching questions
   const goToQuestion = (index: number) => {
@@ -346,12 +342,13 @@ export default function TestInterface({ topicSlug, topicName }: Props) {
               Q{currentQ + 1} / {questions.length}
             </span>
             <div className={`flex items-center gap-1.5 text-sm font-mono font-semibold px-4 py-1.5 rounded-lg border transition-colors ${
+              timeLeft <= 0 ? "text-red-400 bg-red-500/15 border-red-500/30 animate-pulse font-bold" :
               timeLeft < 5 ? "text-red-400 bg-red-500/15 border-red-500/30 animate-pulse" :
               timeLeft < 10 ? "text-amber-400 bg-amber-500/15 border-amber-500/30" :
               "text-blue-400 bg-blue-500/10 border-blue-500/20"
             }`}>
               <Clock className="w-4 h-4" />
-              {timeLeft}s
+              {timeLeft <= 0 ? `TIME EXCEEDED (${Math.abs(timeLeft)}s)` : `${timeLeft}s`}
             </div>
           </div>
         </div>
@@ -360,7 +357,7 @@ export default function TestInterface({ topicSlug, topicName }: Props) {
         <div className="h-1 bg-white/5">
           <div
             className="h-full bg-gradient-to-r from-blue-500 to-amber-500 transition-all duration-300"
-            style={{ width: `${(timeLeft / SECONDS_PER_QUESTION) * 100}%` }}
+            style={{ width: `${Math.max(0, (timeLeft / SECONDS_PER_QUESTION) * 100)}%` }}
           />
         </div>
 

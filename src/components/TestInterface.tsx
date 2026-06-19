@@ -29,6 +29,50 @@ interface Props {
 
 type AnswerState = Record<number, string>;
 
+function renderFormattedText(text: string): React.ReactNode {
+  if (!text) return "";
+  if (!text.includes("$")) return text;
+
+  const parts = text.split("$");
+  return (
+    <>
+      {parts.map((part, index) => {
+        if (index % 2 === 0) {
+          return part;
+        }
+
+        let math = part;
+        math = math.replace(/\\times/g, "×");
+        math = math.replace(/\\pm/g, "±");
+        math = math.replace(/\\div/g, "÷");
+        math = math.replace(/\\approx/g, "≈");
+        math = math.replace(/\\Delta/g, "Δ");
+        math = math.replace(/\\degree/g, "°");
+        math = math.replace(/\\mu/g, "μ");
+        math = math.replace(/\\text\{([^}]+)\}/g, "$1");
+        math = math.replace(/\^3/g, "³");
+        math = math.replace(/\^2/g, "²");
+        math = math.replace(/\^1/g, "¹");
+        math = math.replace(/\^\{-1\}/g, "⁻¹");
+        math = math.replace(/\^\{-2\}/g, "⁻²");
+        math = math.replace(/\^\{-3\}/g, "⁻³");
+        math = math.replace(/\\/g, "").trim();
+
+        const isNumber = /^[+-]?\d+(\.\d+)?$/.test(math);
+        if (isNumber) {
+          return <span key={index} className="font-mono">{math}</span>;
+        }
+
+        return (
+          <span key={index} className="font-serif italic text-blue-300 mx-0.5">
+            {math}
+          </span>
+        );
+      })}
+    </>
+  );
+}
+
 export default function TestInterface({ topicSlug, topicName }: Props) {
   const router = useRouter();
   const [questions, setQuestions] = useState<Question[]>([]);
@@ -246,7 +290,7 @@ export default function TestInterface({ topicSlug, topicName }: Props) {
                     </div>
 
                     <h4 className="font-poppins text-lg font-medium leading-snug">
-                      {q.question_text}
+                      {renderFormattedText(q.question_text)}
                     </h4>
 
                     <div className="grid gap-3">
@@ -287,7 +331,7 @@ export default function TestInterface({ topicSlug, topicName }: Props) {
                             )}
                           >
                             {icon}
-                            <span className="font-medium leading-relaxed">{optText}</span>
+                            <span className="font-medium leading-relaxed">{renderFormattedText(optText)}</span>
                           </div>
                         );
                       })}
@@ -299,7 +343,7 @@ export default function TestInterface({ topicSlug, topicName }: Props) {
                         <span>💡</span> Explanation
                       </div>
                       <p className="text-sm leading-relaxed text-muted-foreground">
-                        {q.explanation || `The correct option is ${correctAns}.`}
+                        {renderFormattedText(q.explanation || `The correct option is ${correctAns}.`)}
                       </p>
                     </div>
                   </div>
@@ -374,7 +418,7 @@ export default function TestInterface({ topicSlug, topicName }: Props) {
             </div>
 
             <h2 className="font-poppins text-2xl font-semibold leading-snug mb-10">
-              {q.question_text}
+              {renderFormattedText(q.question_text)}
             </h2>
 
             <div className="grid gap-3">
@@ -396,7 +440,7 @@ export default function TestInterface({ topicSlug, topicName }: Props) {
                     }`}>
                       {opt}
                     </div>
-                    <span className="text-base font-medium leading-relaxed">{optText}</span>
+                    <span className="text-base font-medium leading-relaxed">{renderFormattedText(optText)}</span>
                   </button>
                 );
               })}

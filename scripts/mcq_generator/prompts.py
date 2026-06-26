@@ -61,6 +61,8 @@ Rules:
 3. The explanation must cite the key concept clearly
 4. Avoid "all of the above" or "none of the above" patterns
 5. Use NEET-style phrasing (scientific, precise language)
+6. Do NOT include option choices, labels (e.g. A), B), C), D)), or answers inside the question_text itself. The question_text must contain only the question body.
+7. Do NOT start explanations with phrases like "Based on the fact that..." or "Based on the fact...". State the explanation directly.
 
 Output ONLY valid JSON in this exact format:
 {{

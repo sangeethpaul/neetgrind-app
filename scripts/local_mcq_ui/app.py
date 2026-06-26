@@ -72,7 +72,7 @@ with st.sidebar:
 st.title("📚 Local NEET MCQ Generator")
 st.markdown("Generate MCQs using your local LLM via Ollama. No cloud API costs, fully private.")
 
-tab_generate, tab_quiz = st.tabs(["📝 Generate", "🎮 Quiz Mode"])
+tab_generate, tab_import, tab_quiz = st.tabs(["📝 Generate", "📁 Import MCQs", "🎮 Quiz Mode"])
 
 with tab_generate:
     # 1. Input Section
@@ -93,10 +93,7 @@ with tab_generate:
         st.session_state.mcqs = []
         st.session_state.logs = []
         
-        # Instantiate the client here with the provided base URL
-        # For Ollama, the API key can be anything
         client = OpenAI(base_url=api_base, api_key="ollama")
-        
         chunks = chunk_text(raw_text, chunk_size=chunk_size)
         st.session_state.extracted_chunks = chunks
         
@@ -119,28 +116,49 @@ with tab_generate:
             
         status_text.text(f"✅ Generated {len(st.session_state.mcqs)} total MCQs!")
 
-    # 3. Output Section
-    if st.session_state.mcqs:
-        st.subheader(f"Generated {len(st.session_state.mcqs)} Questions")
-        
-        # Display as a dataframe
-        df = pd.DataFrame(st.session_state.mcqs)
-        st.dataframe(df)
-        
-        col1, col2 = st.columns(2)
-        with col1:
-            json_str = json.dumps(st.session_state.mcqs, indent=2)
-            st.download_button("⬇️ Download JSON", data=json_str, file_name="mcqs.json", mime="application/json")
-        with col2:
-            csv_data = df.to_csv(index=False)
-            st.download_button("⬇️ Download CSV", data=csv_data, file_name="mcqs.csv", mime="text/csv")
+with tab_import:
+    st.subheader("📁 Import Pre-generated MCQs")
+    st.markdown("Upload a previously downloaded `.json` or `.csv` file to view it, test it, or upload it to Supabase.")
+    
+    uploaded_mcq_file = st.file_uploader("Upload MCQ file (JSON or CSV)", type=["json", "csv"])
+    if uploaded_mcq_file is not None:
+        try:
+            if uploaded_mcq_file.name.endswith(".json"):
+                uploaded_mcq_file.seek(0)
+                imported_mcqs = json.load(uploaded_mcq_file)
+            else:
+                uploaded_mcq_file.seek(0)
+                df_imported = pd.read_csv(uploaded_mcq_file)
+                imported_mcqs = df_imported.to_dict(orient="records")
             
-    # 4. Database Upload Section
-    if st.session_state.mcqs and supabase_client is not None:
+            st.info(f"Parsed {len(imported_mcqs)} MCQs from file.")
+            if st.button("📥 Load into App", type="primary"):
+                st.session_state.mcqs = imported_mcqs
+                st.success(f"Successfully loaded {len(imported_mcqs)} MCQs! Go to the 'Quiz Mode' tab to test them or use the section below to save to Supabase.")
+        except Exception as e:
+            st.error(f"Failed to parse file: {e}")
+
+# --- Shared Output and Upload Sections (outside tabs) ---
+if st.session_state.mcqs:
+    st.divider()
+    st.subheader(f"📊 Active MCQs ({len(st.session_state.mcqs)} Questions)")
+    
+    # Display as a dataframe
+    df = pd.DataFrame(st.session_state.mcqs)
+    st.dataframe(df)
+    
+    col1, col2 = st.columns(2)
+    with col1:
+        json_str = json.dumps(st.session_state.mcqs, indent=2)
+        st.download_button("⬇️ Download JSON", data=json_str, file_name="mcqs.json", mime="application/json")
+    with col2:
+        csv_data = df.to_csv(index=False)
+        st.download_button("⬇️ Download CSV", data=csv_data, file_name="mcqs.csv", mime="text/csv")
+        
+    if supabase_client is not None:
         st.divider()
         st.subheader("☁️ Save to Database")
         
-        # Fetch topics for dropdown
         try:
             res = supabase_client.table("topics").select("id, name, slug").execute()
             topics = res.data
@@ -149,27 +167,61 @@ with tab_generate:
             topics = []
             
         if topics:
+            topics = sorted(topics, key=lambda x: x.get('slug', ''))
             topic_options = {f"{t['name']} ({t['slug']})": t['id'] for t in topics}
             selected_topic_label = st.selectbox("Select Topic", list(topic_options.keys()))
             selected_topic_id = topic_options[selected_topic_label]
             
             if st.button("💾 Upload to Supabase"):
                 with st.spinner("Uploading to database..."):
+                    # Build slug/ID lookup maps for smart mapping
+                    slug_to_id = {t['slug']: t['id'] for t in topics}
+                    valid_ids = {t['id'] for t in topics}
+                    
                     rows = []
                     for mcq in st.session_state.mcqs:
-                        row = mcq.copy()
-                        row['topic_id'] = selected_topic_id
+                        target_id = None
+                        
+                        # 1. Try slug mapping
+                        mcq_slug = mcq.get("slug")
+                        if mcq_slug and mcq_slug in slug_to_id:
+                            target_id = slug_to_id[mcq_slug]
+                            
+                        # 2. Try topic_id mapping
+                        if target_id is None:
+                            mcq_tid = mcq.get("topic_id")
+                            if mcq_tid is not None:
+                                try:
+                                    mcq_tid_int = int(mcq_tid)
+                                    if mcq_tid_int in valid_ids:
+                                        target_id = mcq_tid_int
+                                except (ValueError, TypeError):
+                                    pass
+                                    
+                        # 3. Fallback to dropdown selection
+                        if target_id is None:
+                            target_id = selected_topic_id
+                            
+                        row = {
+                            "topic_id": target_id,
+                            "question_text": mcq.get("question_text"),
+                            "option_a": mcq.get("option_a"),
+                            "option_b": mcq.get("option_b"),
+                            "option_c": mcq.get("option_c"),
+                            "option_d": mcq.get("option_d"),
+                            "correct_option": mcq.get("correct_option"),
+                            "explanation": mcq.get("explanation")
+                        }
                         rows.append(row)
                         
                     try:
-                        # Batch insert
                         result = supabase_client.table("questions").upsert(rows, on_conflict="question_text,topic_id").execute()
                         st.success(f"Successfully uploaded {len(rows)} MCQs to database!")
                     except Exception as e:
                         st.error(f"Upload failed: {e}")
-        elif not topics:
+        else:
             st.warning("No topics found in the database. Please ensure the topics table is populated.")
-    elif st.session_state.mcqs and supabase_client is None:
+    else:
         st.info("Supabase connection not configured. Add SUPABASE_URL and SUPABASE_KEY to .env.local to enable database uploads.")
 
 

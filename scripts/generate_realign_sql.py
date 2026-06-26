@@ -7,7 +7,6 @@ from pathlib import Path
 CURRICULUM = {
     "physics": {
         11: {
-            1: ("Physical World", None),
             2: ("Units and Measurements", "keph101.pdf"),
             3: ("Motion in a Straight Line", "keph102.pdf"),
             4: ("Motion in a Plane", "keph103.pdf"),
@@ -37,8 +36,7 @@ CURRICULUM = {
             11: ("Dual Nature of Radiation and Matter", "leph203.pdf"),
             12: ("Atoms", "leph204.pdf"),
             13: ("Nuclei", "leph205.pdf"),
-            14: ("Semiconductor Electronics: Materials, Devices and Simple Circuits", "leph206.pdf"),
-            15: ("Communication Systems", None)
+            14: ("Semiconductor Electronics: Materials, Devices and Simple Circuits", "leph206.pdf")
         }
     },
     "chemistry": {
@@ -47,34 +45,23 @@ CURRICULUM = {
             2: ("Structure of Atom", "kech102.pdf"),
             3: ("Classification of Elements and Periodicity in Properties", "kech103.pdf"),
             4: ("Chemical Bonding and Molecular Structure", "kech104.pdf"),
-            5: ("States of Matter", None),
             6: ("Thermodynamics", "kech105.pdf"),
             7: ("Equilibrium", "kech106.pdf"),
             8: ("Redox Reactions", "kech201.pdf"),
-            9: ("Hydrogen", None),
-            10: ("The s-Block Elements", None),
-            11: ("The p-Block Elements", None),
             12: ("Organic Chemistry: Some Basic Principles and Techniques", "kech202.pdf"),
-            13: ("Hydrocarbons", "kech203.pdf"),
-            14: ("Environmental Chemistry", None)
+            13: ("Hydrocarbons", "kech203.pdf")
         },
         12: {
-            1: ("The Solid State", None),
             2: ("Solutions", "lech101.pdf"),
             3: ("Electrochemistry", "lech102.pdf"),
             4: ("Chemical Kinetics", "lech103.pdf"),
-            5: ("Surface Chemistry", None),
-            6: ("General Principles and Processes of Isolation of Elements", None),
-            7: ("The p-Block Elements", None),
             8: ("The d- and f-Block Elements", "lech104.pdf"),
             9: ("Coordination Compounds", "lech105.pdf"),
             10: ("Haloalkanes and Haloarenes", "lech201.pdf"),
             11: ("Alcohols, Phenols and Ethers", "lech202.pdf"),
             12: ("Aldehydes, Ketones and Carboxylic Acids", "lech203.pdf"),
             13: ("Amines", "lech204.pdf"),
-            14: ("Biomolecules", "lech205.pdf"),
-            15: ("Polymers", None),
-            16: ("Chemistry in Everyday Life", None)
+            14: ("Biomolecules", "lech205.pdf")
         }
     },
     "biology": {
@@ -89,12 +76,9 @@ CURRICULUM = {
             8: ("Cell: The Unit of Life", "kebo108.pdf"),
             9: ("Biomolecules", "kebo109.pdf"),
             10: ("Cell Cycle and Cell Division", "kebo110.pdf"),
-            11: ("Transport in Plants", None),
-            12: ("Mineral Nutrition", None),
             13: ("Photosynthesis in Higher Plants", "kebo111.pdf"),
             14: ("Respiration in Plants", "kebo112.pdf"),
             15: ("Plant Growth and Development", "kebo113.pdf"),
-            16: ("Digestion and Absorption", None),
             17: ("Breathing and Exchange of Gases", "kebo114.pdf"),
             18: ("Body Fluids and Circulation", "kebo115.pdf"),
             19: ("Excretory Products and their Elimination", "kebo116.pdf"),
@@ -103,7 +87,6 @@ CURRICULUM = {
             22: ("Chemical Coordination and Integration", "kebo119.pdf")
         },
         12: {
-            1: ("Reproduction in Organisms", None),
             2: ("Sexual Reproduction in Flowering Plants", "lebo101.pdf"),
             3: ("Human Reproduction", "lebo102.pdf"),
             4: ("Reproductive Health", "lebo103.pdf"),
@@ -111,14 +94,12 @@ CURRICULUM = {
             6: ("Molecular Basis of Inheritance", "lebo105.pdf"),
             7: ("Evolution", "lebo106.pdf"),
             8: ("Human Health and Disease", "lebo107.pdf"),
-            9: ("Strategies for Enhancement in Food Production", None),
             10: ("Microbes in Human Welfare", "lebo108.pdf"),
             11: ("Biotechnology: Principles and Processes", "lebo109.pdf"),
             12: ("Biotechnology and its Applications", "lebo110.pdf"),
             13: ("Organisms and Populations", "lebo111.pdf"),
             14: ("Ecosystem", "lebo112.pdf"),
-            15: ("Biodiversity and Conservation", "lebo113.pdf"),
-            16: ("Environmental Issues", None)
+            15: ("Biodiversity and Conservation", "lebo113.pdf")
         }
     }
 }

@@ -9,10 +9,6 @@ BEGIN;
 -- ------------------------------------------------------------
 
 -- Class 11
--- physics-class-11-ch-1
-INSERT INTO public.topics (subject_id, name, slug, description) VALUES ((SELECT id FROM public.subjects WHERE slug = 'physics'), 'Physical World', 'physics-class-11-ch-1', 'NCERT Notes and study materials for Physical World') ON CONFLICT (slug) DO UPDATE SET name = EXCLUDED.name, description = EXCLUDED.description;
-DELETE FROM public.ncert_content WHERE topic_id = (SELECT id FROM public.topics WHERE slug = 'physics-class-11-ch-1');
-INSERT INTO public.ncert_content (topic_id, title, markdown_body, pdf_url) VALUES ((SELECT id FROM public.topics WHERE slug = 'physics-class-11-ch-1'), 'Physical World — NCERT PDF', 'PDF Viewer Only', NULL);
 -- physics-class-11-ch-2
 INSERT INTO public.topics (subject_id, name, slug, description) VALUES ((SELECT id FROM public.subjects WHERE slug = 'physics'), 'Units and Measurements', 'physics-class-11-ch-2', 'NCERT Notes and study materials for Units and Measurements') ON CONFLICT (slug) DO UPDATE SET name = EXCLUDED.name, description = EXCLUDED.description;
 DELETE FROM public.ncert_content WHERE topic_id = (SELECT id FROM public.topics WHERE slug = 'physics-class-11-ch-2');
@@ -127,10 +123,6 @@ INSERT INTO public.ncert_content (topic_id, title, markdown_body, pdf_url) VALUE
 INSERT INTO public.topics (subject_id, name, slug, description) VALUES ((SELECT id FROM public.subjects WHERE slug = 'physics'), 'Semiconductor Electronics: Materials, Devices and Simple Circuits', 'physics-class-12-ch-14', 'NCERT Notes and study materials for Semiconductor Electronics: Materials, Devices and Simple Circuits') ON CONFLICT (slug) DO UPDATE SET name = EXCLUDED.name, description = EXCLUDED.description;
 DELETE FROM public.ncert_content WHERE topic_id = (SELECT id FROM public.topics WHERE slug = 'physics-class-12-ch-14');
 INSERT INTO public.ncert_content (topic_id, title, markdown_body, pdf_url) VALUES ((SELECT id FROM public.topics WHERE slug = 'physics-class-12-ch-14'), 'Semiconductor Electronics: Materials, Devices and Simple Circuits — NCERT PDF', 'PDF Viewer Only', '/pdfs/Physics/Class_12/leph206.pdf');
--- physics-class-12-ch-15
-INSERT INTO public.topics (subject_id, name, slug, description) VALUES ((SELECT id FROM public.subjects WHERE slug = 'physics'), 'Communication Systems', 'physics-class-12-ch-15', 'NCERT Notes and study materials for Communication Systems') ON CONFLICT (slug) DO UPDATE SET name = EXCLUDED.name, description = EXCLUDED.description;
-DELETE FROM public.ncert_content WHERE topic_id = (SELECT id FROM public.topics WHERE slug = 'physics-class-12-ch-15');
-INSERT INTO public.ncert_content (topic_id, title, markdown_body, pdf_url) VALUES ((SELECT id FROM public.topics WHERE slug = 'physics-class-12-ch-15'), 'Communication Systems — NCERT PDF', 'PDF Viewer Only', NULL);
 -- ------------------------------------------------------------
 -- Subject: Chemistry
 -- ------------------------------------------------------------
@@ -152,10 +144,6 @@ INSERT INTO public.ncert_content (topic_id, title, markdown_body, pdf_url) VALUE
 INSERT INTO public.topics (subject_id, name, slug, description) VALUES ((SELECT id FROM public.subjects WHERE slug = 'chemistry'), 'Chemical Bonding and Molecular Structure', 'chemistry-class-11-ch-4', 'NCERT Notes and study materials for Chemical Bonding and Molecular Structure') ON CONFLICT (slug) DO UPDATE SET name = EXCLUDED.name, description = EXCLUDED.description;
 DELETE FROM public.ncert_content WHERE topic_id = (SELECT id FROM public.topics WHERE slug = 'chemistry-class-11-ch-4');
 INSERT INTO public.ncert_content (topic_id, title, markdown_body, pdf_url) VALUES ((SELECT id FROM public.topics WHERE slug = 'chemistry-class-11-ch-4'), 'Chemical Bonding and Molecular Structure — NCERT PDF', 'PDF Viewer Only', '/pdfs/Chemistry/Class_11/kech104.pdf');
--- chemistry-class-11-ch-5
-INSERT INTO public.topics (subject_id, name, slug, description) VALUES ((SELECT id FROM public.subjects WHERE slug = 'chemistry'), 'States of Matter', 'chemistry-class-11-ch-5', 'NCERT Notes and study materials for States of Matter') ON CONFLICT (slug) DO UPDATE SET name = EXCLUDED.name, description = EXCLUDED.description;
-DELETE FROM public.ncert_content WHERE topic_id = (SELECT id FROM public.topics WHERE slug = 'chemistry-class-11-ch-5');
-INSERT INTO public.ncert_content (topic_id, title, markdown_body, pdf_url) VALUES ((SELECT id FROM public.topics WHERE slug = 'chemistry-class-11-ch-5'), 'States of Matter — NCERT PDF', 'PDF Viewer Only', NULL);
 -- chemistry-class-11-ch-6
 INSERT INTO public.topics (subject_id, name, slug, description) VALUES ((SELECT id FROM public.subjects WHERE slug = 'chemistry'), 'Thermodynamics', 'chemistry-class-11-ch-6', 'NCERT Notes and study materials for Thermodynamics') ON CONFLICT (slug) DO UPDATE SET name = EXCLUDED.name, description = EXCLUDED.description;
 DELETE FROM public.ncert_content WHERE topic_id = (SELECT id FROM public.topics WHERE slug = 'chemistry-class-11-ch-6');
@@ -168,18 +156,6 @@ INSERT INTO public.ncert_content (topic_id, title, markdown_body, pdf_url) VALUE
 INSERT INTO public.topics (subject_id, name, slug, description) VALUES ((SELECT id FROM public.subjects WHERE slug = 'chemistry'), 'Redox Reactions', 'chemistry-class-11-ch-8', 'NCERT Notes and study materials for Redox Reactions') ON CONFLICT (slug) DO UPDATE SET name = EXCLUDED.name, description = EXCLUDED.description;
 DELETE FROM public.ncert_content WHERE topic_id = (SELECT id FROM public.topics WHERE slug = 'chemistry-class-11-ch-8');
 INSERT INTO public.ncert_content (topic_id, title, markdown_body, pdf_url) VALUES ((SELECT id FROM public.topics WHERE slug = 'chemistry-class-11-ch-8'), 'Redox Reactions — NCERT PDF', 'PDF Viewer Only', '/pdfs/Chemistry/Class_11/kech201.pdf');
--- chemistry-class-11-ch-9
-INSERT INTO public.topics (subject_id, name, slug, description) VALUES ((SELECT id FROM public.subjects WHERE slug = 'chemistry'), 'Hydrogen', 'chemistry-class-11-ch-9', 'NCERT Notes and study materials for Hydrogen') ON CONFLICT (slug) DO UPDATE SET name = EXCLUDED.name, description = EXCLUDED.description;
-DELETE FROM public.ncert_content WHERE topic_id = (SELECT id FROM public.topics WHERE slug = 'chemistry-class-11-ch-9');
-INSERT INTO public.ncert_content (topic_id, title, markdown_body, pdf_url) VALUES ((SELECT id FROM public.topics WHERE slug = 'chemistry-class-11-ch-9'), 'Hydrogen — NCERT PDF', 'PDF Viewer Only', NULL);
--- chemistry-class-11-ch-10
-INSERT INTO public.topics (subject_id, name, slug, description) VALUES ((SELECT id FROM public.subjects WHERE slug = 'chemistry'), 'The s-Block Elements', 'chemistry-class-11-ch-10', 'NCERT Notes and study materials for The s-Block Elements') ON CONFLICT (slug) DO UPDATE SET name = EXCLUDED.name, description = EXCLUDED.description;
-DELETE FROM public.ncert_content WHERE topic_id = (SELECT id FROM public.topics WHERE slug = 'chemistry-class-11-ch-10');
-INSERT INTO public.ncert_content (topic_id, title, markdown_body, pdf_url) VALUES ((SELECT id FROM public.topics WHERE slug = 'chemistry-class-11-ch-10'), 'The s-Block Elements — NCERT PDF', 'PDF Viewer Only', NULL);
--- chemistry-class-11-ch-11
-INSERT INTO public.topics (subject_id, name, slug, description) VALUES ((SELECT id FROM public.subjects WHERE slug = 'chemistry'), 'The p-Block Elements', 'chemistry-class-11-ch-11', 'NCERT Notes and study materials for The p-Block Elements') ON CONFLICT (slug) DO UPDATE SET name = EXCLUDED.name, description = EXCLUDED.description;
-DELETE FROM public.ncert_content WHERE topic_id = (SELECT id FROM public.topics WHERE slug = 'chemistry-class-11-ch-11');
-INSERT INTO public.ncert_content (topic_id, title, markdown_body, pdf_url) VALUES ((SELECT id FROM public.topics WHERE slug = 'chemistry-class-11-ch-11'), 'The p-Block Elements — NCERT PDF', 'PDF Viewer Only', NULL);
 -- chemistry-class-11-ch-12
 INSERT INTO public.topics (subject_id, name, slug, description) VALUES ((SELECT id FROM public.subjects WHERE slug = 'chemistry'), 'Organic Chemistry: Some Basic Principles and Techniques', 'chemistry-class-11-ch-12', 'NCERT Notes and study materials for Organic Chemistry: Some Basic Principles and Techniques') ON CONFLICT (slug) DO UPDATE SET name = EXCLUDED.name, description = EXCLUDED.description;
 DELETE FROM public.ncert_content WHERE topic_id = (SELECT id FROM public.topics WHERE slug = 'chemistry-class-11-ch-12');
@@ -188,16 +164,8 @@ INSERT INTO public.ncert_content (topic_id, title, markdown_body, pdf_url) VALUE
 INSERT INTO public.topics (subject_id, name, slug, description) VALUES ((SELECT id FROM public.subjects WHERE slug = 'chemistry'), 'Hydrocarbons', 'chemistry-class-11-ch-13', 'NCERT Notes and study materials for Hydrocarbons') ON CONFLICT (slug) DO UPDATE SET name = EXCLUDED.name, description = EXCLUDED.description;
 DELETE FROM public.ncert_content WHERE topic_id = (SELECT id FROM public.topics WHERE slug = 'chemistry-class-11-ch-13');
 INSERT INTO public.ncert_content (topic_id, title, markdown_body, pdf_url) VALUES ((SELECT id FROM public.topics WHERE slug = 'chemistry-class-11-ch-13'), 'Hydrocarbons — NCERT PDF', 'PDF Viewer Only', '/pdfs/Chemistry/Class_11/kech203.pdf');
--- chemistry-class-11-ch-14
-INSERT INTO public.topics (subject_id, name, slug, description) VALUES ((SELECT id FROM public.subjects WHERE slug = 'chemistry'), 'Environmental Chemistry', 'chemistry-class-11-ch-14', 'NCERT Notes and study materials for Environmental Chemistry') ON CONFLICT (slug) DO UPDATE SET name = EXCLUDED.name, description = EXCLUDED.description;
-DELETE FROM public.ncert_content WHERE topic_id = (SELECT id FROM public.topics WHERE slug = 'chemistry-class-11-ch-14');
-INSERT INTO public.ncert_content (topic_id, title, markdown_body, pdf_url) VALUES ((SELECT id FROM public.topics WHERE slug = 'chemistry-class-11-ch-14'), 'Environmental Chemistry — NCERT PDF', 'PDF Viewer Only', NULL);
 
 -- Class 12
--- chemistry-class-12-ch-1
-INSERT INTO public.topics (subject_id, name, slug, description) VALUES ((SELECT id FROM public.subjects WHERE slug = 'chemistry'), 'The Solid State', 'chemistry-class-12-ch-1', 'NCERT Notes and study materials for The Solid State') ON CONFLICT (slug) DO UPDATE SET name = EXCLUDED.name, description = EXCLUDED.description;
-DELETE FROM public.ncert_content WHERE topic_id = (SELECT id FROM public.topics WHERE slug = 'chemistry-class-12-ch-1');
-INSERT INTO public.ncert_content (topic_id, title, markdown_body, pdf_url) VALUES ((SELECT id FROM public.topics WHERE slug = 'chemistry-class-12-ch-1'), 'The Solid State — NCERT PDF', 'PDF Viewer Only', NULL);
 -- chemistry-class-12-ch-2
 INSERT INTO public.topics (subject_id, name, slug, description) VALUES ((SELECT id FROM public.subjects WHERE slug = 'chemistry'), 'Solutions', 'chemistry-class-12-ch-2', 'NCERT Notes and study materials for Solutions') ON CONFLICT (slug) DO UPDATE SET name = EXCLUDED.name, description = EXCLUDED.description;
 DELETE FROM public.ncert_content WHERE topic_id = (SELECT id FROM public.topics WHERE slug = 'chemistry-class-12-ch-2');
@@ -210,18 +178,6 @@ INSERT INTO public.ncert_content (topic_id, title, markdown_body, pdf_url) VALUE
 INSERT INTO public.topics (subject_id, name, slug, description) VALUES ((SELECT id FROM public.subjects WHERE slug = 'chemistry'), 'Chemical Kinetics', 'chemistry-class-12-ch-4', 'NCERT Notes and study materials for Chemical Kinetics') ON CONFLICT (slug) DO UPDATE SET name = EXCLUDED.name, description = EXCLUDED.description;
 DELETE FROM public.ncert_content WHERE topic_id = (SELECT id FROM public.topics WHERE slug = 'chemistry-class-12-ch-4');
 INSERT INTO public.ncert_content (topic_id, title, markdown_body, pdf_url) VALUES ((SELECT id FROM public.topics WHERE slug = 'chemistry-class-12-ch-4'), 'Chemical Kinetics — NCERT PDF', 'PDF Viewer Only', '/pdfs/Chemistry/Class_12/lech103.pdf');
--- chemistry-class-12-ch-5
-INSERT INTO public.topics (subject_id, name, slug, description) VALUES ((SELECT id FROM public.subjects WHERE slug = 'chemistry'), 'Surface Chemistry', 'chemistry-class-12-ch-5', 'NCERT Notes and study materials for Surface Chemistry') ON CONFLICT (slug) DO UPDATE SET name = EXCLUDED.name, description = EXCLUDED.description;
-DELETE FROM public.ncert_content WHERE topic_id = (SELECT id FROM public.topics WHERE slug = 'chemistry-class-12-ch-5');
-INSERT INTO public.ncert_content (topic_id, title, markdown_body, pdf_url) VALUES ((SELECT id FROM public.topics WHERE slug = 'chemistry-class-12-ch-5'), 'Surface Chemistry — NCERT PDF', 'PDF Viewer Only', NULL);
--- chemistry-class-12-ch-6
-INSERT INTO public.topics (subject_id, name, slug, description) VALUES ((SELECT id FROM public.subjects WHERE slug = 'chemistry'), 'General Principles and Processes of Isolation of Elements', 'chemistry-class-12-ch-6', 'NCERT Notes and study materials for General Principles and Processes of Isolation of Elements') ON CONFLICT (slug) DO UPDATE SET name = EXCLUDED.name, description = EXCLUDED.description;
-DELETE FROM public.ncert_content WHERE topic_id = (SELECT id FROM public.topics WHERE slug = 'chemistry-class-12-ch-6');
-INSERT INTO public.ncert_content (topic_id, title, markdown_body, pdf_url) VALUES ((SELECT id FROM public.topics WHERE slug = 'chemistry-class-12-ch-6'), 'General Principles and Processes of Isolation of Elements — NCERT PDF', 'PDF Viewer Only', NULL);
--- chemistry-class-12-ch-7
-INSERT INTO public.topics (subject_id, name, slug, description) VALUES ((SELECT id FROM public.subjects WHERE slug = 'chemistry'), 'The p-Block Elements', 'chemistry-class-12-ch-7', 'NCERT Notes and study materials for The p-Block Elements') ON CONFLICT (slug) DO UPDATE SET name = EXCLUDED.name, description = EXCLUDED.description;
-DELETE FROM public.ncert_content WHERE topic_id = (SELECT id FROM public.topics WHERE slug = 'chemistry-class-12-ch-7');
-INSERT INTO public.ncert_content (topic_id, title, markdown_body, pdf_url) VALUES ((SELECT id FROM public.topics WHERE slug = 'chemistry-class-12-ch-7'), 'The p-Block Elements — NCERT PDF', 'PDF Viewer Only', NULL);
 -- chemistry-class-12-ch-8
 INSERT INTO public.topics (subject_id, name, slug, description) VALUES ((SELECT id FROM public.subjects WHERE slug = 'chemistry'), 'The d- and f-Block Elements', 'chemistry-class-12-ch-8', 'NCERT Notes and study materials for The d- and f-Block Elements') ON CONFLICT (slug) DO UPDATE SET name = EXCLUDED.name, description = EXCLUDED.description;
 DELETE FROM public.ncert_content WHERE topic_id = (SELECT id FROM public.topics WHERE slug = 'chemistry-class-12-ch-8');
@@ -250,14 +206,6 @@ INSERT INTO public.ncert_content (topic_id, title, markdown_body, pdf_url) VALUE
 INSERT INTO public.topics (subject_id, name, slug, description) VALUES ((SELECT id FROM public.subjects WHERE slug = 'chemistry'), 'Biomolecules', 'chemistry-class-12-ch-14', 'NCERT Notes and study materials for Biomolecules') ON CONFLICT (slug) DO UPDATE SET name = EXCLUDED.name, description = EXCLUDED.description;
 DELETE FROM public.ncert_content WHERE topic_id = (SELECT id FROM public.topics WHERE slug = 'chemistry-class-12-ch-14');
 INSERT INTO public.ncert_content (topic_id, title, markdown_body, pdf_url) VALUES ((SELECT id FROM public.topics WHERE slug = 'chemistry-class-12-ch-14'), 'Biomolecules — NCERT PDF', 'PDF Viewer Only', '/pdfs/Chemistry/Class_12/lech205.pdf');
--- chemistry-class-12-ch-15
-INSERT INTO public.topics (subject_id, name, slug, description) VALUES ((SELECT id FROM public.subjects WHERE slug = 'chemistry'), 'Polymers', 'chemistry-class-12-ch-15', 'NCERT Notes and study materials for Polymers') ON CONFLICT (slug) DO UPDATE SET name = EXCLUDED.name, description = EXCLUDED.description;
-DELETE FROM public.ncert_content WHERE topic_id = (SELECT id FROM public.topics WHERE slug = 'chemistry-class-12-ch-15');
-INSERT INTO public.ncert_content (topic_id, title, markdown_body, pdf_url) VALUES ((SELECT id FROM public.topics WHERE slug = 'chemistry-class-12-ch-15'), 'Polymers — NCERT PDF', 'PDF Viewer Only', NULL);
--- chemistry-class-12-ch-16
-INSERT INTO public.topics (subject_id, name, slug, description) VALUES ((SELECT id FROM public.subjects WHERE slug = 'chemistry'), 'Chemistry in Everyday Life', 'chemistry-class-12-ch-16', 'NCERT Notes and study materials for Chemistry in Everyday Life') ON CONFLICT (slug) DO UPDATE SET name = EXCLUDED.name, description = EXCLUDED.description;
-DELETE FROM public.ncert_content WHERE topic_id = (SELECT id FROM public.topics WHERE slug = 'chemistry-class-12-ch-16');
-INSERT INTO public.ncert_content (topic_id, title, markdown_body, pdf_url) VALUES ((SELECT id FROM public.topics WHERE slug = 'chemistry-class-12-ch-16'), 'Chemistry in Everyday Life — NCERT PDF', 'PDF Viewer Only', NULL);
 -- ------------------------------------------------------------
 -- Subject: Biology
 -- ------------------------------------------------------------
@@ -303,14 +251,6 @@ INSERT INTO public.ncert_content (topic_id, title, markdown_body, pdf_url) VALUE
 INSERT INTO public.topics (subject_id, name, slug, description) VALUES ((SELECT id FROM public.subjects WHERE slug = 'biology'), 'Cell Cycle and Cell Division', 'biology-class-11-ch-10', 'NCERT Notes and study materials for Cell Cycle and Cell Division') ON CONFLICT (slug) DO UPDATE SET name = EXCLUDED.name, description = EXCLUDED.description;
 DELETE FROM public.ncert_content WHERE topic_id = (SELECT id FROM public.topics WHERE slug = 'biology-class-11-ch-10');
 INSERT INTO public.ncert_content (topic_id, title, markdown_body, pdf_url) VALUES ((SELECT id FROM public.topics WHERE slug = 'biology-class-11-ch-10'), 'Cell Cycle and Cell Division — NCERT PDF', 'PDF Viewer Only', '/pdfs/Biology/Class_11/kebo110.pdf');
--- biology-class-11-ch-11
-INSERT INTO public.topics (subject_id, name, slug, description) VALUES ((SELECT id FROM public.subjects WHERE slug = 'biology'), 'Transport in Plants', 'biology-class-11-ch-11', 'NCERT Notes and study materials for Transport in Plants') ON CONFLICT (slug) DO UPDATE SET name = EXCLUDED.name, description = EXCLUDED.description;
-DELETE FROM public.ncert_content WHERE topic_id = (SELECT id FROM public.topics WHERE slug = 'biology-class-11-ch-11');
-INSERT INTO public.ncert_content (topic_id, title, markdown_body, pdf_url) VALUES ((SELECT id FROM public.topics WHERE slug = 'biology-class-11-ch-11'), 'Transport in Plants — NCERT PDF', 'PDF Viewer Only', NULL);
--- biology-class-11-ch-12
-INSERT INTO public.topics (subject_id, name, slug, description) VALUES ((SELECT id FROM public.subjects WHERE slug = 'biology'), 'Mineral Nutrition', 'biology-class-11-ch-12', 'NCERT Notes and study materials for Mineral Nutrition') ON CONFLICT (slug) DO UPDATE SET name = EXCLUDED.name, description = EXCLUDED.description;
-DELETE FROM public.ncert_content WHERE topic_id = (SELECT id FROM public.topics WHERE slug = 'biology-class-11-ch-12');
-INSERT INTO public.ncert_content (topic_id, title, markdown_body, pdf_url) VALUES ((SELECT id FROM public.topics WHERE slug = 'biology-class-11-ch-12'), 'Mineral Nutrition — NCERT PDF', 'PDF Viewer Only', NULL);
 -- biology-class-11-ch-13
 INSERT INTO public.topics (subject_id, name, slug, description) VALUES ((SELECT id FROM public.subjects WHERE slug = 'biology'), 'Photosynthesis in Higher Plants', 'biology-class-11-ch-13', 'NCERT Notes and study materials for Photosynthesis in Higher Plants') ON CONFLICT (slug) DO UPDATE SET name = EXCLUDED.name, description = EXCLUDED.description;
 DELETE FROM public.ncert_content WHERE topic_id = (SELECT id FROM public.topics WHERE slug = 'biology-class-11-ch-13');
@@ -323,10 +263,6 @@ INSERT INTO public.ncert_content (topic_id, title, markdown_body, pdf_url) VALUE
 INSERT INTO public.topics (subject_id, name, slug, description) VALUES ((SELECT id FROM public.subjects WHERE slug = 'biology'), 'Plant Growth and Development', 'biology-class-11-ch-15', 'NCERT Notes and study materials for Plant Growth and Development') ON CONFLICT (slug) DO UPDATE SET name = EXCLUDED.name, description = EXCLUDED.description;
 DELETE FROM public.ncert_content WHERE topic_id = (SELECT id FROM public.topics WHERE slug = 'biology-class-11-ch-15');
 INSERT INTO public.ncert_content (topic_id, title, markdown_body, pdf_url) VALUES ((SELECT id FROM public.topics WHERE slug = 'biology-class-11-ch-15'), 'Plant Growth and Development — NCERT PDF', 'PDF Viewer Only', '/pdfs/Biology/Class_11/kebo113.pdf');
--- biology-class-11-ch-16
-INSERT INTO public.topics (subject_id, name, slug, description) VALUES ((SELECT id FROM public.subjects WHERE slug = 'biology'), 'Digestion and Absorption', 'biology-class-11-ch-16', 'NCERT Notes and study materials for Digestion and Absorption') ON CONFLICT (slug) DO UPDATE SET name = EXCLUDED.name, description = EXCLUDED.description;
-DELETE FROM public.ncert_content WHERE topic_id = (SELECT id FROM public.topics WHERE slug = 'biology-class-11-ch-16');
-INSERT INTO public.ncert_content (topic_id, title, markdown_body, pdf_url) VALUES ((SELECT id FROM public.topics WHERE slug = 'biology-class-11-ch-16'), 'Digestion and Absorption — NCERT PDF', 'PDF Viewer Only', NULL);
 -- biology-class-11-ch-17
 INSERT INTO public.topics (subject_id, name, slug, description) VALUES ((SELECT id FROM public.subjects WHERE slug = 'biology'), 'Breathing and Exchange of Gases', 'biology-class-11-ch-17', 'NCERT Notes and study materials for Breathing and Exchange of Gases') ON CONFLICT (slug) DO UPDATE SET name = EXCLUDED.name, description = EXCLUDED.description;
 DELETE FROM public.ncert_content WHERE topic_id = (SELECT id FROM public.topics WHERE slug = 'biology-class-11-ch-17');
@@ -353,10 +289,6 @@ DELETE FROM public.ncert_content WHERE topic_id = (SELECT id FROM public.topics 
 INSERT INTO public.ncert_content (topic_id, title, markdown_body, pdf_url) VALUES ((SELECT id FROM public.topics WHERE slug = 'biology-class-11-ch-22'), 'Chemical Coordination and Integration — NCERT PDF', 'PDF Viewer Only', '/pdfs/Biology/Class_11/kebo119.pdf');
 
 -- Class 12
--- biology-class-12-ch-1
-INSERT INTO public.topics (subject_id, name, slug, description) VALUES ((SELECT id FROM public.subjects WHERE slug = 'biology'), 'Reproduction in Organisms', 'biology-class-12-ch-1', 'NCERT Notes and study materials for Reproduction in Organisms') ON CONFLICT (slug) DO UPDATE SET name = EXCLUDED.name, description = EXCLUDED.description;
-DELETE FROM public.ncert_content WHERE topic_id = (SELECT id FROM public.topics WHERE slug = 'biology-class-12-ch-1');
-INSERT INTO public.ncert_content (topic_id, title, markdown_body, pdf_url) VALUES ((SELECT id FROM public.topics WHERE slug = 'biology-class-12-ch-1'), 'Reproduction in Organisms — NCERT PDF', 'PDF Viewer Only', NULL);
 -- biology-class-12-ch-2
 INSERT INTO public.topics (subject_id, name, slug, description) VALUES ((SELECT id FROM public.subjects WHERE slug = 'biology'), 'Sexual Reproduction in Flowering Plants', 'biology-class-12-ch-2', 'NCERT Notes and study materials for Sexual Reproduction in Flowering Plants') ON CONFLICT (slug) DO UPDATE SET name = EXCLUDED.name, description = EXCLUDED.description;
 DELETE FROM public.ncert_content WHERE topic_id = (SELECT id FROM public.topics WHERE slug = 'biology-class-12-ch-2');
@@ -385,10 +317,6 @@ INSERT INTO public.ncert_content (topic_id, title, markdown_body, pdf_url) VALUE
 INSERT INTO public.topics (subject_id, name, slug, description) VALUES ((SELECT id FROM public.subjects WHERE slug = 'biology'), 'Human Health and Disease', 'biology-class-12-ch-8', 'NCERT Notes and study materials for Human Health and Disease') ON CONFLICT (slug) DO UPDATE SET name = EXCLUDED.name, description = EXCLUDED.description;
 DELETE FROM public.ncert_content WHERE topic_id = (SELECT id FROM public.topics WHERE slug = 'biology-class-12-ch-8');
 INSERT INTO public.ncert_content (topic_id, title, markdown_body, pdf_url) VALUES ((SELECT id FROM public.topics WHERE slug = 'biology-class-12-ch-8'), 'Human Health and Disease — NCERT PDF', 'PDF Viewer Only', '/pdfs/Biology/Class_12/lebo107.pdf');
--- biology-class-12-ch-9
-INSERT INTO public.topics (subject_id, name, slug, description) VALUES ((SELECT id FROM public.subjects WHERE slug = 'biology'), 'Strategies for Enhancement in Food Production', 'biology-class-12-ch-9', 'NCERT Notes and study materials for Strategies for Enhancement in Food Production') ON CONFLICT (slug) DO UPDATE SET name = EXCLUDED.name, description = EXCLUDED.description;
-DELETE FROM public.ncert_content WHERE topic_id = (SELECT id FROM public.topics WHERE slug = 'biology-class-12-ch-9');
-INSERT INTO public.ncert_content (topic_id, title, markdown_body, pdf_url) VALUES ((SELECT id FROM public.topics WHERE slug = 'biology-class-12-ch-9'), 'Strategies for Enhancement in Food Production — NCERT PDF', 'PDF Viewer Only', NULL);
 -- biology-class-12-ch-10
 INSERT INTO public.topics (subject_id, name, slug, description) VALUES ((SELECT id FROM public.subjects WHERE slug = 'biology'), 'Microbes in Human Welfare', 'biology-class-12-ch-10', 'NCERT Notes and study materials for Microbes in Human Welfare') ON CONFLICT (slug) DO UPDATE SET name = EXCLUDED.name, description = EXCLUDED.description;
 DELETE FROM public.ncert_content WHERE topic_id = (SELECT id FROM public.topics WHERE slug = 'biology-class-12-ch-10');
@@ -413,9 +341,5 @@ INSERT INTO public.ncert_content (topic_id, title, markdown_body, pdf_url) VALUE
 INSERT INTO public.topics (subject_id, name, slug, description) VALUES ((SELECT id FROM public.subjects WHERE slug = 'biology'), 'Biodiversity and Conservation', 'biology-class-12-ch-15', 'NCERT Notes and study materials for Biodiversity and Conservation') ON CONFLICT (slug) DO UPDATE SET name = EXCLUDED.name, description = EXCLUDED.description;
 DELETE FROM public.ncert_content WHERE topic_id = (SELECT id FROM public.topics WHERE slug = 'biology-class-12-ch-15');
 INSERT INTO public.ncert_content (topic_id, title, markdown_body, pdf_url) VALUES ((SELECT id FROM public.topics WHERE slug = 'biology-class-12-ch-15'), 'Biodiversity and Conservation — NCERT PDF', 'PDF Viewer Only', '/pdfs/Biology/Class_12/lebo113.pdf');
--- biology-class-12-ch-16
-INSERT INTO public.topics (subject_id, name, slug, description) VALUES ((SELECT id FROM public.subjects WHERE slug = 'biology'), 'Environmental Issues', 'biology-class-12-ch-16', 'NCERT Notes and study materials for Environmental Issues') ON CONFLICT (slug) DO UPDATE SET name = EXCLUDED.name, description = EXCLUDED.description;
-DELETE FROM public.ncert_content WHERE topic_id = (SELECT id FROM public.topics WHERE slug = 'biology-class-12-ch-16');
-INSERT INTO public.ncert_content (topic_id, title, markdown_body, pdf_url) VALUES ((SELECT id FROM public.topics WHERE slug = 'biology-class-12-ch-16'), 'Environmental Issues — NCERT PDF', 'PDF Viewer Only', NULL);
 
 COMMIT;

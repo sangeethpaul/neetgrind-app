@@ -75,7 +75,7 @@ function renderFormattedText(text: string): React.ReactNode {
 
 function cleanExplanation(text: string): string {
   if (!text) return "";
-  let cleaned = text.replace(/^based\s+on\s+the\s+fact(?:\s+that|\s*,)?\s*/i, "");
+  let cleaned = text.replace(/^based\s+on\s+the\s+fact(?:\s+that|\s*,|\s*:)?\s*/i, "");
   if (cleaned.length > 0) {
     cleaned = cleaned.charAt(0).toUpperCase() + cleaned.slice(1);
   }

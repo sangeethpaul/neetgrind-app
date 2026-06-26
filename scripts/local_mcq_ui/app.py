@@ -167,8 +167,63 @@ if st.session_state.mcqs:
             topics = []
             
         if topics:
-            topics = sorted(topics, key=lambda x: x.get('slug', ''))
-            topic_options = {f"{t['name']} ({t['slug']})": t['id'] for t in topics}
+            def parse_topic_slug(slug: str) -> tuple[str, str, int]:
+                parts = slug.split('-')
+                subject = "Unknown"
+                class_num = ""
+                ch_num = 0
+                
+                if slug.startswith("biology"):
+                    subject = "Biology"
+                elif slug.startswith("chemistry"):
+                    subject = "Chemistry"
+                elif slug.startswith("physics"):
+                    subject = "Physics"
+                else:
+                    subject_part = slug.split('-class-')[0] if '-class-' in slug else ""
+                    subject = subject_part.capitalize() or "Unknown"
+                    
+                if 'class' in parts:
+                    try:
+                        idx = parts.index('class')
+                        if idx + 1 < len(parts):
+                            class_num = parts[idx + 1]
+                    except Exception:
+                        pass
+                        
+                if 'ch' in parts:
+                    try:
+                        idx = parts.index('ch')
+                        if idx + 1 < len(parts):
+                            ch_num = int(parts[idx + 1])
+                    except Exception:
+                        pass
+                        
+                return subject, class_num, ch_num
+
+            def get_topic_sort_key(t):
+                subj, cls_str, ch_num = parse_topic_slug(t.get('slug', ''))
+                try:
+                    cls_val = int(cls_str)
+                except ValueError:
+                    cls_val = 999
+                return (subj, cls_val, ch_num, t.get('name', ''))
+
+            topics = sorted(topics, key=get_topic_sort_key)
+            
+            topic_options = {}
+            for t in topics:
+                subj, cls, ch = parse_topic_slug(t.get('slug', ''))
+                if subj != "Unknown" and cls and ch > 0:
+                    label = f"{subj} Class {cls} │ Chapter {ch}: {t['name']}"
+                else:
+                    label = f"{t['name']} ({t['slug']})"
+                
+                # Ensure unique keys
+                if label in topic_options:
+                    label = f"{label} ({t['slug']})"
+                topic_options[label] = t['id']
+                
             selected_topic_label = st.selectbox("Select Topic", list(topic_options.keys()))
             selected_topic_id = topic_options[selected_topic_label]
             
